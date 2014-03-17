@@ -22,19 +22,19 @@ public class Main {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             //ATTENTION AU PORT
-            String url = "jdbc:mysql://localhost:3306/coffeebreak"; 
+            String url = "jdbc:mysql://localhost:3306/coffeebreak";
             conn = DriverManager.getConnection(url, "root", "root");
-            
+
             doInsert("Chocolat", 5);
-            
+
             doInsert("Capuccino", 6);
-            
+
             doUpdateAllPlusOne();
-            
+
             doDeletePrice(6);
-            
+
             doDeleteTable();
-            
+
             conn.close();
         } catch (ClassNotFoundException ex) {
             System.err.println(ex.getMessage());
@@ -48,7 +48,7 @@ public class Main {
     }
 
     /* permet de vérifier si l'entité existe, si un COF_NAME existe deja, 
-    * ça realise l'update, autrement ca permet l'INSERT */
+     * ça realise l'update, autrement ca permet l'INSERT */
     private int doCheck(String str, int checkPrice) {
         int isOk = 0;
         System.out.println("[CHECKING OUT existings]");
@@ -104,7 +104,7 @@ public class Main {
             System.err.println(ex.getMessage());
         }
     }
-    
+
     private void doUpdate(String str, int price) {
         System.out.print("\n[Performing UPDATE] ... ");
         try {
@@ -135,9 +135,9 @@ public class Main {
                 System.out.println(s + "   " + n);
                 try {
                     Statement st2 = conn.createStatement();
-                    n=n+1;
-                    st2.executeUpdate("UPDATE COFFEES SET PRICE="+n+
-                            "WHERE COF_NAME='"+s+"'");
+                    n = n + 1;
+                    st2.executeUpdate("UPDATE COFFEES SET PRICE=" + n
+                            + "WHERE COF_NAME='" + s + "'");
                 } catch (SQLException ex) {
                     System.err.println(ex.getMessage());
                 }
@@ -146,7 +146,7 @@ public class Main {
             System.err.println(ex.getMessage());
         }
         ////
-                    System.out.println("[NEW PRICES = OLD PRICES + 1]");
+        System.out.println("[NEW PRICES = OLD PRICES + 1]");
 
     }
 }
